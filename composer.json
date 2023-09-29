@@ -2,7 +2,11 @@
     "name": "hexlet/code",
     "autoload": {
         "psr-4": {
-            "Hexlet\\Validator\\": "src/",
+            "Hexlet\\Validator\\": "src/"
+        }
+    },
+    "autoload-dve": {
+        "psr-4": {
             "Hexlet\\Validator\\Tests\\": "tests/"
         }
     },
