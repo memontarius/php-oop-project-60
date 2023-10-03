@@ -29,6 +29,10 @@ final class StringSchemaTest extends TestCase
     public function testEmptyString(): void
     {
         $this->assertTrue($this->schema->isValid(''));
+
+        $this->schema->required();
+
+        $this->assertFalse($this->schema->isValid(''));
     }
 
     public function testNull(): void

@@ -41,4 +41,23 @@ class ArraySchemaTest extends TestCase
         $this->assertTrue($actual);
     }
 
+    public function testNestedValidation()
+    {
+        $schema = $this->schema->shape([
+            'name' => $this->validator->string()->required(),
+            'age' => $this->validator->number()->positive(),
+        ]);
+
+        $actual = $schema->isValid(['name' => 'kolya', 'age' => 100]);
+        $this->assertTrue($actual);
+
+        $actual = $schema->isValid(['name' => 'maya', 'age' => null]);
+        $this->assertTrue($actual);
+
+        $actual = $schema->isValid(['name' => '', 'age' => null]);
+        $this->assertFalse($actual);
+
+        $actual = $schema->isValid(['name' => 'ada', 'age' => -5]);
+        $this->assertFalse($actual);
+    }
 }
