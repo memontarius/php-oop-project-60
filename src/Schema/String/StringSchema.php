@@ -3,17 +3,15 @@
 namespace Hexlet\Validator\Schema\String;
 
 
-use Hexlet\Validator\Rules\ContainsRule;
-use Hexlet\Validator\Rules\MinLengthRule;
+use Hexlet\Validator\Rules\String\ContainsRule;
+use Hexlet\Validator\Rules\String\MinLengthRule;
 use Hexlet\Validator\Schema\Schema;
 
 class StringSchema extends Schema
 {
-    private static string $minLengthRuleName = 'minLength';
-
     public function minLength(int $length): StringSchema
     {
-        $this->addRule(new MinLengthRule($length), static::$minLengthRuleName);
+        $this->addRule(new MinLengthRule($length));
         return $this;
     }
 

@@ -2,15 +2,15 @@
 
 namespace Hexlet\Validator\Schema;
 
-use Hexlet\Validator\Rules\RequiredRule;
+
+use Hexlet\Validator\RuleInterface;
+use Hexlet\Validator\Rules\Shared\RequiredRule;
 use Hexlet\Validator\Validator;
 
 abstract class Schema
 {
-    private static string $requiredRuleName = 'require';
-
     /**
-     * @var IRule[]
+     * @var RuleInterface[]
      */
     private array $rules = [];
     private Validator $validator;
@@ -21,19 +21,20 @@ abstract class Schema
     }
 
     /**
-     * @return IRule[]
+     * @return RuleInterface[]
      */
     public function getRules(): array
     {
         return $this->rules;
     }
 
-    protected function addRule($callable, string $name = ''): void
+    protected function addRule(RuleInterface $rule): void
     {
-        if ($name == '') {
-            $this->rules[] = $callable;
+        $name = $rule->getName();
+        if (empty($name)) {
+            $this->rules[] = $rule;
         } else {
-            $this->rules[$name] = $callable;
+            $this->rules[$name] = $rule;
         }
     }
 
@@ -44,9 +45,7 @@ abstract class Schema
 
     public function required(): Schema
     {
-        $this->addRule(
-            new RequiredRule(),
-            static::$requiredRuleName);
+        $this->addRule(new RequiredRule());
         return $this;
     }
 }
