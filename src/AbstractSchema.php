@@ -28,7 +28,7 @@ abstract class AbstractSchema
         return true;
     }
 
-    protected function addRule(RuleInterface $rule, bool $primarily = false): void
+    protected function addRule(RuleInterface $rule): void
     {
         $name = $rule->getName();
         if ($name === null || $name === '') {
