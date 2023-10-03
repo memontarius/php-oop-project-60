@@ -1,13 +1,12 @@
 <?php
 
-namespace Hexlet\Validator\Schema\String;
+namespace Hexlet\Validator\Schema;
 
-
+use Hexlet\Validator\AbstractSchema;
 use Hexlet\Validator\Rules\String\ContainsRule;
 use Hexlet\Validator\Rules\String\MinLengthRule;
-use Hexlet\Validator\Schema\Schema;
 
-class StringSchema extends Schema
+class StringSchema extends AbstractSchema
 {
     public function minLength(int $length): StringSchema
     {

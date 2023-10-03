@@ -2,13 +2,13 @@
 
 namespace Hexlet\Validator;
 
-use Hexlet\Validator\Schema\Numeric\NumericSchema;
-use Hexlet\Validator\Schema\Schema;
-use Hexlet\Validator\Schema\String\StringSchema;
+use Hexlet\Validator\Schema\ArraySchema;
+use Hexlet\Validator\Schema\NumericSchema;
+use Hexlet\Validator\Schema\StringSchema;
 
 class Validator
 {
-    public function validate(Schema $schema, mixed $verifiable): bool
+    public function validate(AbstractSchema $schema, mixed $verifiable): bool
     {
         foreach ($schema->getRules() as $rule) {
             if (!$rule->isSatisfied($verifiable)) {
@@ -26,5 +26,10 @@ class Validator
     public function number(): NumericSchema
     {
         return new NumericSchema($this);
+    }
+
+    public function array(): ArraySchema
+    {
+        return new ArraySchema($this);
     }
 }

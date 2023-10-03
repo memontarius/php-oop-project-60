@@ -1,9 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Hexlet\Validator\Tests;
 
-
-use Hexlet\Validator\Schema\String\StringSchema;
+use Hexlet\Validator\Schema\StringSchema;
 use Hexlet\Validator\Validator;
 use PHPUnit\Framework\TestCase;
 

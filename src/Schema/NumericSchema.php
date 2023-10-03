@@ -1,13 +1,12 @@
 <?php
 
-namespace Hexlet\Validator\Schema\Numeric;
+namespace Hexlet\Validator\Schema;
 
-
+use Hexlet\Validator\AbstractSchema;
 use Hexlet\Validator\Rules\Numeric\PositiveRule;
 use Hexlet\Validator\Rules\Numeric\RangeRule;
-use Hexlet\Validator\Schema\Schema;
 
-class NumericSchema extends Schema
+class NumericSchema extends AbstractSchema
 {
     public function positive(): NumericSchema
     {

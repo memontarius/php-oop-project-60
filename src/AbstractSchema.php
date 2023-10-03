@@ -1,19 +1,16 @@
 <?php
 
-namespace Hexlet\Validator\Schema;
+namespace Hexlet\Validator;
 
-
-use Hexlet\Validator\RuleInterface;
 use Hexlet\Validator\Rules\Shared\RequiredRule;
-use Hexlet\Validator\Validator;
 
-abstract class Schema
+abstract class AbstractSchema
 {
     /**
      * @var RuleInterface[]
      */
     private array $rules = [];
-    private Validator $validator;
+    private readonly Validator $validator;
 
     public function __construct(Validator $validator)
     {
@@ -43,7 +40,7 @@ abstract class Schema
         return $this->validator->validate($this, $verifiable);
     }
 
-    public function required(): Schema
+    public function required(): AbstractSchema
     {
         $this->addRule(new RequiredRule());
         return $this;

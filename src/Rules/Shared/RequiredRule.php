@@ -8,7 +8,7 @@ class RequiredRule extends AbstractRule
 {
     public function isSatisfied(mixed $verifiable): bool
     {
-        return $verifiable != null;
+        return $verifiable !== null;
     }
 
     public function getName(): string

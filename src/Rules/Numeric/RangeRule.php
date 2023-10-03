@@ -6,7 +6,7 @@ use Hexlet\Validator\AbstractRule;
 
 class RangeRule extends AbstractRule
 {
-    public function __construct(private $min, private $max)
+    public function __construct(private readonly int $min, private readonly int $max)
     {
     }
 

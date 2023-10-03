@@ -6,11 +6,8 @@ use Hexlet\Validator\AbstractRule;
 
 class MinLengthRule extends AbstractRule
 {
-    private int $minLength;
-
-    public function __construct($minLength)
+    public function __construct(private readonly int $minLength)
     {
-        $this->minLength = $minLength;
     }
 
     public function isSatisfied(mixed $verifiable): bool

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Hexlet\Validator\Tests;
 
-use Hexlet\Validator\Schema\Numeric\NumericSchema;
+use Hexlet\Validator\Schema\NumericSchema;
 use Hexlet\Validator\Validator;
 use PHPUnit\Framework\TestCase;
 
