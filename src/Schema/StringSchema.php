@@ -33,7 +33,7 @@ class StringSchema extends AbstractSchema
 
     public function required(): AbstractSchema
     {
-        $this->addRule(new RequiredRule());
+        $this->requiredRule = new RequiredRule();
         return $this;
     }
 }

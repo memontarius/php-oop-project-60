@@ -32,6 +32,7 @@ class NumericSchemaTest extends TestCase
 
         $this->schema->required();
 
+        $this->assertTrue($this->schema->isValid(0));
         $this->assertFalse($this->schema->isValid(null));
     }
 
@@ -41,8 +42,13 @@ class NumericSchemaTest extends TestCase
 
         $this->schema->positive();
 
+        $this->assertFalse($this->schema->isValid(0));
         $this->assertTrue($this->schema->isValid(10));
         $this->assertFalse($this->schema->isValid(-7));
+
+        $this->schema->required();
+        $this->assertTrue($this->schema->isValid(10));
+        $this->assertFalse($this->schema->isValid(-10));
     }
 
     public function testRange()

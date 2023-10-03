@@ -8,6 +8,6 @@ class PositiveRule extends AbstractRule
 {
     public function isSatisfied(mixed $verifiable): bool
     {
-        return $verifiable >= 0;
+        return $verifiable > 0;
     }
 }
