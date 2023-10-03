@@ -33,7 +33,7 @@ class Validator
         $this->validators[$schemaName] = [];
     }
 
-    public function addValidator(string $validatorName, string $ruleName, callable $func): void
+    public function addValidator(string $validatorName, string $ruleName, \Closure $func): void
     {
         if (!array_key_exists($validatorName, $this->validators)) {
             throw new InvalidValidatorNameException();
@@ -41,7 +41,7 @@ class Validator
         $this->validators[$validatorName][$ruleName] = $func;
     }
 
-    public function getValidator(string $validatorName, string $ruleName): callable
+    public function getValidator(string $validatorName, string $ruleName): \Closure
     {
         if (!array_key_exists($validatorName, $this->validators)) {
             throw new InvalidValidatorNameException();
