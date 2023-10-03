@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Hexlet\Validator\Tests;
 
+use Hexlet\Validator\Exception\UnsupportedTypeException;
 use Hexlet\Validator\Schema\NumericSchema;
 use Hexlet\Validator\Validator;
 use PHPUnit\Framework\TestCase;
@@ -17,6 +18,12 @@ class NumericSchemaTest extends TestCase
     {
         $this->validator = new Validator();
         $this->schema = $this->validator->number();
+    }
+
+    public function testWrongType(): void
+    {
+        $this->expectException(UnsupportedTypeException::class);
+        $this->schema->isValid('string');
     }
 
     public function testRequired()

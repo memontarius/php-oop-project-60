@@ -9,6 +9,16 @@ use Hexlet\Validator\Rules\String\MinLengthRule;
 
 class StringSchema extends AbstractSchema
 {
+    public static function getName(): string
+    {
+        return 'string';
+    }
+
+    protected function isSupportedType(string $type): bool
+    {
+        return $type === 'string';
+    }
+
     public function minLength(int $length): StringSchema
     {
         $this->addRule(new MinLengthRule($length));

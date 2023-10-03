@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Hexlet\Validator\Tests;
 
+use Hexlet\Validator\Exception\UnsupportedTypeException;
 use Hexlet\Validator\Schema\ArraySchema;
 use Hexlet\Validator\Validator;
 use PHPUnit\Framework\TestCase;
@@ -17,6 +18,12 @@ class ArraySchemaTest extends TestCase
     {
         $this->validator = new Validator();
         $this->schema = $this->validator->array();
+    }
+
+    public function testWrongType(): void
+    {
+        $this->expectException(UnsupportedTypeException::class);
+        $this->schema->isValid('not supported type');
     }
 
     public function testArray()

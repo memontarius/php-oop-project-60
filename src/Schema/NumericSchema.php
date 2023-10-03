@@ -8,6 +8,16 @@ use Hexlet\Validator\Rules\Numeric\RangeRule;
 
 class NumericSchema extends AbstractSchema
 {
+    public static function getName(): string
+    {
+        return 'number';
+    }
+
+    protected function isSupportedType(string $type): bool
+    {
+        return $type === 'integer';
+    }
+
     public function positive(): NumericSchema
     {
         $this->addRule(new PositiveRule());
