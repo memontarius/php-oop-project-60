@@ -31,7 +31,7 @@ abstract class AbstractSchema
     protected function addRule(RuleInterface $rule, bool $primarily = false): void
     {
         $name = $rule->getName();
-        if (empty($name)) {
+        if ($name === null || $name === '') {
             $this->rules[] = $rule;
         } else {
             $this->rules[$name] = $rule;
@@ -48,7 +48,7 @@ abstract class AbstractSchema
 
     public function isValid(mixed $verifiable): bool
     {
-        if ($this->requiredRule) {
+        if ($this->requiredRule !== null) {
             if (!$this->requiredRule->isSatisfied($verifiable)) {
                 return false;
             }
@@ -69,7 +69,7 @@ abstract class AbstractSchema
         return $this;
     }
 
-    public function test(string $ruleName, ...$parameters): AbstractSchema
+    public function test(string $ruleName, mixed ...$parameters): AbstractSchema
     {
         $ruleFunc = $this->validator->getValidator(static::getName(), $ruleName);
         $this->addRule(new CustomRule($ruleFunc, $parameters));

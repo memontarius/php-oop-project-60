@@ -41,7 +41,7 @@ class Validator
         $this->validators[$validatorName][$ruleName] = $func;
     }
 
-    public function getValidator(string $validatorName, string $ruleName)
+    public function getValidator(string $validatorName, string $ruleName): callable
     {
         if (!array_key_exists($validatorName, $this->validators)) {
             throw new InvalidValidatorNameException();

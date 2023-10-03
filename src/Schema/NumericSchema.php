@@ -24,7 +24,7 @@ class NumericSchema extends AbstractSchema
         return $this;
     }
 
-    public function range($min, $max): NumericSchema
+    public function range(int $min, int $max): NumericSchema
     {
         $this->addRule(new RangeRule($min, $max));
         return $this;

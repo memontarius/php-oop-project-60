@@ -8,6 +8,6 @@ class RequiredRule extends Shared\RequiredRule
 {
     public function isSatisfied(mixed $verifiable): bool
     {
-        return !empty($verifiable);
+        return $verifiable !== null && $verifiable !== '';
     }
 }
