@@ -14,18 +14,16 @@ abstract class AbstractSchema
     private array $rules = [];
     protected ?RuleInterface $requiredRule = null;
 
-    private readonly Validator $validator;
-
-    public function __construct(Validator $validator)
-    {
-        $this->validator = $validator;
+    public function __construct(
+        private readonly Validator $validator,
+        private readonly string $type,
+        private readonly array $supportedTypes
+    ) {
     }
 
-    abstract public static function getName(): string;
-
-    protected function isSupportedType(string $type): bool
+    protected function isTypeSupported(string $type): bool
     {
-        return true;
+        return in_array($type, $this->supportedTypes);
     }
 
     protected function addRule(RuleInterface $rule): void
@@ -56,7 +54,7 @@ abstract class AbstractSchema
             return true;
         }
 
-        if (!$this->isSupportedType(gettype($verifiable))) {
+        if (!$this->isTypeSupported(gettype($verifiable))) {
             throw new UnsupportedTypeException();
         }
 
@@ -71,7 +69,7 @@ abstract class AbstractSchema
 
     public function test(string $ruleName, mixed ...$parameters): AbstractSchema
     {
-        $ruleFunc = $this->validator->getValidator(static::getName(), $ruleName);
+        $ruleFunc = $this->validator->getValidator($this->type, $ruleName);
         $this->addRule(new CustomRule($ruleFunc, $parameters));
         return $this;
     }

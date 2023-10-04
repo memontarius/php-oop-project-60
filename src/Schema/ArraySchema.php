@@ -8,15 +8,7 @@ use Hexlet\Validator\Rules\Array\SizeOfRule;
 
 class ArraySchema extends AbstractSchema
 {
-    public static function getName(): string
-    {
-        return 'array';
-    }
-
-    protected function isSupportedType(string $type): bool
-    {
-        return $type === 'array';
-    }
+    public const SUPPORTED_TYPES = ['array'];
 
     public function sizeof(int $size): ArraySchema
     {

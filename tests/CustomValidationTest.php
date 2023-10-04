@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Hexlet\Validator\Tests;
 
-use Hexlet\Validator\Exception\InvalidValidatorNameException;
+use Hexlet\Validator\Exception\InvalidValidatorTypeException;
 use Hexlet\Validator\Validator;
 use PHPUnit\Framework\TestCase;
 
@@ -20,7 +20,7 @@ class CustomValidationTest extends TestCase
     public function testCustomString()
     {
         $fn = fn ($value, $start) => str_starts_with($value, $start);
-        $this->validator->addValidator('string', 'startWith', $fn);
+        $this->validator->addValidator(Validator::STRING_TYPE, 'startWith', $fn);
 
         $schema = $this->validator->string()->test('startWith', 'H');
         $actual = $schema->isValid('exlet');
@@ -45,7 +45,7 @@ class CustomValidationTest extends TestCase
 
     public function testValidatorNotFound()
     {
-        $this->expectException(InvalidValidatorNameException::class);
+        $this->expectException(InvalidValidatorTypeException::class);
 
         $this->validator->addValidator('wrong-name', 'startWith', fn ($value, $param) => true);
     }

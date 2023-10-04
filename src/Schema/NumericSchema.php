@@ -8,15 +8,7 @@ use Hexlet\Validator\Rules\Numeric\RangeRule;
 
 class NumericSchema extends AbstractSchema
 {
-    public static function getName(): string
-    {
-        return 'number';
-    }
-
-    protected function isSupportedType(string $type): bool
-    {
-        return $type === 'integer';
-    }
+    public const SUPPORTED_TYPES = ['integer'];
 
     public function positive(): NumericSchema
     {
